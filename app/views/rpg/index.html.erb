@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ninja Money</title>
+    </head>
+    <body>
+        <h4>Your Gold: <a id="gold"><%= @gold %></a></h4>
+        <!-- will need a session to keep track of gold amount -->
+        <div class='place'>
+            <h4>Farm</h4>
+            <p>(earns 10-20 gold)</p>
+            <form action='/rpg/farm' method='post'>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type='hidden' name='building' value='farm'>
+                <input type='submit' value='Find Gold!'>
+            </form>
+        </div>
+        <div class='place'>
+            <h4>Cave</h4>
+            <p>(earns 5-10 gold)</p>
+            <form action='/rpg/cave' method='post'>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type='hidden' name='building' value='cave'>
+                <input type='submit' value='Find Gold!'>
+            </form>
+        </div>
+        <div class='place'>
+            <h4>House</h4>
+            <p>(earns 2-5 gold)</p>
+            <form action='/rpg/house' method='post'>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type='hidden' name='building' value='house'>
+                <input type='submit' value='Find Gold!'>
+            </form>
+        </div>
+        <div class='place'>
+            <h4>Casino</h4>
+            <p>(earns/takes 0-50 gold)</p>
+            <form action='/rpg/casino' method='post'>
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type='hidden' name='building' value='casino'>
+                <input type='submit' value='Find Gold!'>
+            </form>
+        </div>
+        <p>Activities: </p>
+        <div id="act">
+            <% @activities.each do |item| %>
+                <p class='<%= item['class'] %>'><%= item['message'] %></p>
+            <% end %> 
+        </div>
+    </body>
+</html>
